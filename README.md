@@ -1,15 +1,13 @@
 # Las Vegas Style Slot Machine Game
 
-![Slot Machine Banner](https://placeholder-image.com/slot-machine-banner.jpg)
-
 ## Project Overview
 
-This repository contains a full-featured Las Vegas style slot machine game built primarily with C++. The game delivers an authentic casino experience with realistic mechanics, engaging graphics, and immersive sound effects.
+This repository contains a full-featured Las Vegas-style slot machine game built primarily with C++. The game delivers an authentic casino experience with realistic mechanics, engaging graphics, and immersive sound effects.
 
 ## Features
 
 - **Authentic Gameplay**: True-to-casino random number generation and payout algorithms
-- **Multiple Reel Configurations**: Support for 3, 5, and 7-reel gameplay with configurable paylines
+- **Multiple Reel Configurations**: Support for 3, 5, and 7-reel gameplay with configurable pay lines
 - **Rich Bonus Features**: Free spins, multipliers, bonus games, and progressive jackpots
 - **High-Quality Graphics**: Smooth animations and eye-catching visual effects
 - **Immersive Audio**: Dynamic sound effects and background music
@@ -40,8 +38,8 @@ This repository contains a full-featured Las Vegas style slot machine game built
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/las-vegas-slot-machine.git
-   cd las-vegas-slot-machine
+   git clone https://https://github.com/AareonJackson/SlotMachineGame.git
+   cd Slot-Machine
    ```
 
 2. Initialize and update submodules:
@@ -129,9 +127,9 @@ Example configuration:
 ## Development Roadmap
 
 - [x] Project setup and architecture design
-- [x] Core game mechanics
-- [x] Basic UI implementation
-- [x] Reel animations and graphics
+- [ ] Core game mechanics
+- [ ] Basic UI implementation
+- [ ] Reel animations and graphics
 - [ ] Sound effects and music integration
 - [ ] Bonus features implementation
 - [ ] Statistics and history tracking
@@ -140,27 +138,12 @@ Example configuration:
 - [ ] Comprehensive testing
 - [ ] Release build and deployment
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/amazing-feature`
-3. Commit your changes: `git commit -m 'Add some amazing feature'`
-4. Push to the branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
 - Inspired by classic Las Vegas slot machines
 - Thanks to the SFML and OpenAL communities for their excellent libraries
 - Special thanks to all contributors and testers
-
-## Contact
-
-Project Link: [https://github.com/yourusername/las-vegas-slot-machine](https://github.com/yourusername/las-vegas-slot-machine)
 
 ---
 
