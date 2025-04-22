@@ -1,0 +1,21 @@
+# ninja log v6
+1	22	1745293967108019754	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	e05d34a647f93155
+1	22	1745293967108019754	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	e05d34a647f93155
+23	10567	1745293977652260104	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	3c864b1a722ca04e
+23	10567	1745293977652260104	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	3c864b1a722ca04e
+10567	10620	1745293977653205637	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	41b6bcc4e6ff757
+10567	10620	1745293977653205637	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	41b6bcc4e6ff757
+10621	10636	1745293977721099509	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	5ed86c4982d40994
+10621	10636	1745293977721099509	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	5ed86c4982d40994
+10636	10652	1745293977737333702	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	fb1c2b03ac814a92
+10636	10652	1745293977737333702	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	fb1c2b03ac814a92
+10652	10668	1745293977753840226	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	302c174763135d0d
+10652	10668	1745293977753840226	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	302c174763135d0d
+10668	10683	1745293977768781680	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	a2aaccceac1ea141
+10668	10683	1745293977768781680	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	a2aaccceac1ea141
+10683	10699	1745293977784313546	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	487cbdb8dd59126b
+10683	10699	1745293977784313546	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	487cbdb8dd59126b
+10699	10721	1745293977806755102	CMakeFiles/sfml-populate-complete	bdadf9330771e64c
+10699	10721	1745293977806755102	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	bdadf9330771e64c
+10699	10721	1745293977806755102	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	bdadf9330771e64c
+10699	10721	1745293977806755102	/Users/aareonjackson/Desktop/Developer/Projects/Slot-Machine/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	bdadf9330771e64c
