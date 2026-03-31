@@ -1,0 +1,10 @@
+{
+  "num_reels": 3,
+  "num_visible_rows": 3,
+  "reel_strips": [
+    ["SEVEN", "CHERRY", "BAR", "LEMON", "BELL", "CHERRY"],
+    ["CHERRY", "LEMON", "SEVEN", "CHERRY", "BAR", "BELL"],
+    ["BAR", "BELL", "LEMON", "CHERRY", "SEVEN", "CHERRY"]
+  ]
+}
+

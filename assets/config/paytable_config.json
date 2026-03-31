@@ -1,0 +1,9 @@
+{
+  "payouts": [
+    {"symbol":  "SEVEN", "match_count":  3, "multiplier":  100},
+    {"symbol":  "BAR", "match_count":  3, "multiplier":  50},
+    {"symbol":  "BELL", "match_count":  3, "multiplier":  20},
+    {"symbol":  "CHERRY", "match_count":  3, "multiplier":  10},
+    {"symbol":  "CHERRY", "match_count":  2, "multiplier":  2}
+  ]
+}

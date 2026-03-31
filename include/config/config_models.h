@@ -11,18 +11,27 @@ struct GameConfig {
 };
 
 struct ReelsConfig {
-
+    int num_reels;
+    int num_visible_rows;
+    std::vector<std::vector<std::string>> reel_strips;
 };
 
 struct PaylinesConfig {
-
+    // each payline is a vector of integers, representing row indices per reel
+    std::vector<std::vector<int>> paylines;
 };
+
+struct PayoutRule {
+    std::string symbol;
+    int match_count;
+    int multiplier; // the multiplier applied to the player's bet
+};
+
 struct PaytableConfig {
-
+    std::vector<PayoutRule> payouts;
 };
-struct FeaturesConfig {
 
-};
+// struct FeaturesConfig {};
 
 /*
 
@@ -43,9 +52,10 @@ the type does not have a default constructor and only serialization is required.
 */
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(GameConfig, gameTitle, windowWidth, windowHeight)
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ReelsConfig, )
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(PaylinesConfig, )
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(PaytableConfig, )
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(FeaturesConfig, )
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ReelsConfig, num_reels, num_visible_rows, reel_strips)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(PaylinesConfig, paylines)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(PayoutRule, symbol, match_count, multiplier)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(PaytableConfig, payouts)
+// NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(FeaturesConfig, )
 
 
