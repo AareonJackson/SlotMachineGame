@@ -34,7 +34,7 @@ This repository contains a full-featured Las Vegas-style slot machine game built
 - Git
 - CLion IDE (recommended) or any C++ IDE
 
-### Installation
+### Installation (The project is still ongoing, so please be patient. A Development roadmap is provided further below.)
 
 1. Clone the repository:
    ```bash
