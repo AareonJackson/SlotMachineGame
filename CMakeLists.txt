@@ -19,23 +19,28 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Include custom CMake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+include(FetchContent)
+
+FetchContent_Declare(
+        json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.11.2
+)
+FetchContent_MakeAvailable(json)
+
 # Check if SFML exists in the specified external directory
 set(SFML_LOCAL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/sfml")
 if(EXISTS "${SFML_LOCAL_PATH}")
     message(STATUS "Using local SFML from ${SFML_LOCAL_PATH}")
 
-    # Option 1: If SFML is already built and just needs to be included
     if(EXISTS "${SFML_LOCAL_PATH}/lib/cmake/SFML/SFMLConfig.cmake")
         set(SFML_DIR "${SFML_LOCAL_PATH}/lib/cmake/SFML")
         find_package(SFML 2.5 COMPONENTS graphics window system audio REQUIRED)
-        # Option 2: If SFML is provided as source and needs to be built
     elseif(EXISTS "${SFML_LOCAL_PATH}/CMakeLists.txt")
-        # Add SFML as a subdirectory to build it as part of this project
-        # Disable SFML examples and tests to speed up the build
         set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "Build the SFML examples" FORCE)
         set(SFML_BUILD_DOC OFF CACHE BOOL "Build the SFML documentation" FORCE)
         set(SFML_BUILD_NETWORK OFF CACHE BOOL "Build the SFML network module" FORCE)
-        set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries" FORCE)
+        set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared libraries" FORCE)
 
         add_subdirectory(${SFML_LOCAL_PATH} sfml_build)
     else()
@@ -44,19 +49,26 @@ if(EXISTS "${SFML_LOCAL_PATH}")
 else()
     message(STATUS "Local SFML not found at ${SFML_LOCAL_PATH}, downloading it...")
 
-    # Use FetchContent to download SFML
     include(FetchContent)
     FetchContent_Declare(
             SFML
             GIT_REPOSITORY https://github.com/SFML/SFML.git
-            GIT_TAG 2.5.1
+            GIT_TAG 2.6.1
     )
 
     # Configure SFML build options
     set(SFML_BUILD_EXAMPLES OFF CACHE BOOL "Build the SFML examples" FORCE)
     set(SFML_BUILD_DOC OFF CACHE BOOL "Build the SFML documentation" FORCE)
     set(SFML_BUILD_NETWORK OFF CACHE BOOL "Build the SFML network module" FORCE)
-    set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries" FORCE)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build shared libraries" FORCE)
+
+    # WORKAROUND FOR MACOS CMAKE CASE-SENSITIVITY BUG
+    # SFML requests VORBIS but provides FindVorbis.cmake. CMake's strict casing rejects it.
+    # We create a proxy file in an isolated directory to safely bypass this check.
+    set(PROXY_MODULE_DIR "${CMAKE_BINARY_DIR}/cmake_proxy")
+    file(MAKE_DIRECTORY "${PROXY_MODULE_DIR}")
+    file(WRITE "${PROXY_MODULE_DIR}/FindVORBIS.cmake" "include(\"${CMAKE_BINARY_DIR}/_deps/sfml-src/cmake/Modules/FindVorbis.cmake\")\n")
+    list(INSERT CMAKE_MODULE_PATH 0 "${PROXY_MODULE_DIR}")
 
     FetchContent_MakeAvailable(SFML)
 endif()
@@ -109,9 +121,10 @@ target_link_libraries(SlotMachine
         sfml-window
         sfml-system
         sfml-audio
+        nlohmann_json::nlohmann_json
 )
 
-# Include path - more specific way than global include_directories
+# Include path
 target_include_directories(SlotMachine
         PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -125,28 +138,19 @@ add_custom_command(TARGET SlotMachine POST_BUILD
         ${CMAKE_CURRENT_SOURCE_DIR}/assets $<TARGET_FILE_DIR:SlotMachine>/assets
 )
 
-# Generate compile_commands.json for tools like clang-tidy
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Testing
 if(BUILD_TESTS)
     enable_testing()
-    # Uncomment the line below when you have a tests directory with CMakeLists.txt
-    # add_subdirectory(tests)
 endif()
 
-# Documentation
 if(BUILD_DOCS)
     find_package(Doxygen)
     if(DOXYGEN_FOUND)
-        # Uncomment the line below when you have a docs directory with CMakeLists.txt
-        # add_subdirectory(docs)
-    else()
-        message(STATUS "Doxygen not found, documentation will not be built")
+        message(STATUS "Doxygen found.")
     endif()
 endif()
 
-# Installation rules
 install(TARGETS SlotMachine
         RUNTIME DESTINATION bin
         LIBRARY DESTINATION lib
@@ -154,7 +158,4 @@ install(TARGETS SlotMachine
 )
 install(DIRECTORY assets/ DESTINATION bin/assets)
 
-# Print configuration summary
 message(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
-message(STATUS "BUILD_TESTS: ${BUILD_TESTS}")
-message(STATUS "BUILD_DOCS: ${BUILD_DOCS}")
