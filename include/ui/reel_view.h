@@ -1,0 +1,34 @@
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <vector>
+#include <string>
+
+class ReelView {
+public:
+    ReelView(int numReels, int numRows, float startX, float startY, float width, float height);
+
+    // Update the symbols to be displayed.
+    // Outer vector is reels (columns), inner vector is rows.
+    void updateSymbols(const std::vector<std::vector<std::string>>& symbols);
+
+    // Draw the reel
+    void draw(sf::RenderWindow& window);
+
+private:
+    int m_numReels;
+    int m_numRows;
+    float m_x;
+    float m_y;
+    float m_width;
+    float m_height;
+
+    std::vector<std::vector<std::string>> m_symbols;
+
+    // SFML Graphics objects.
+    sf::RectangleShape m_machineFrame;
+    sf::Font m_font;
+    bool m_hasFont;
+
+    // Helper to get the color based on symbol string.
+    sf::Color getSymbolColor(const std::string& symbol);
+};

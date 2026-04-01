@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <memory>
+#include "ui/reel_view.h"
 
 class GameWindow {
 public:
@@ -16,4 +18,7 @@ public:
 
 private:
     sf::RenderWindow m_window;
+
+    // UI Components
+    std::unique_ptr<ReelView> m_reelView;
 };
