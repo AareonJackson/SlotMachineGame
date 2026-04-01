@@ -1,4 +1,5 @@
 #include "ui/game_window.h"
+#include <iostream>
 
 GameWindow::GameWindow(int width, int height, const std::string &title)
     : m_window(sf::VideoMode(width, height), title) {
@@ -19,6 +20,28 @@ GameWindow::GameWindow(int width, int height, const std::string &title)
             {"CHERRY", "BAR", "BELL"}
         };
     m_reelView->updateSymbols(initialSymbols);
+
+    // Spin button setup
+    float btnWidth = 200.0f;
+    float btnHeight = 60.0f;
+    float btnX = (width - btnWidth) / 2.0f; // Centered
+    float btnY = startY + gridHeight + 40.0f; // Placed below the reels
+
+    m_spinButton = std::make_unique<Button>(btnX, btnY, btnWidth, btnHeight, "SPIN!");
+
+    // Define a spin click
+    m_spinButton->setOnClick([this]() {
+        std::cout << "Spin Button Clicked!" << std::endl;
+        // TODO: Later this will call Engine->spin()
+
+        // For now, let's just visually shuffle the dummy text to prove it works!
+        std::vector<std::vector<std::string>> newSymbols = {
+            {"BELL", "BAR", "LEMON"},
+            {"CHERRY", "SEVEN", "BAR"},
+            {"LEMON", "CHERRY", "BELL"}
+        };
+        m_reelView->updateSymbols(newSymbols);
+    });
 }
 
 GameWindow::~GameWindow() {
@@ -38,6 +61,15 @@ void GameWindow::pollEvents() {
         if (event.type == sf::Event::Closed) {
             m_window.close();
         }
+
+        // Pass events to UI components
+        if (m_spinButton) {
+            m_spinButton->handleEvent(event, m_window);
+        }
+    }
+    // Update UI components
+    if (m_spinButton) {
+        m_spinButton->update(sf::Mouse::getPosition(m_window));
     }
 }
 
@@ -48,6 +80,10 @@ void GameWindow::render() {
     // Draw the slot reels
     if (m_reelView) {
         m_reelView->draw(m_window);
+    }
+
+    if (m_spinButton) {
+        m_spinButton->draw(m_window);
     }
 
     // Display window

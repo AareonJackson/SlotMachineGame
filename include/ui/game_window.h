@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 #include "ui/reel_view.h"
+#include "ui/button.h"
 
 class GameWindow {
 public:
@@ -21,4 +22,5 @@ private:
 
     // UI Components
     std::unique_ptr<ReelView> m_reelView;
+    std::unique_ptr<Button> m_spinButton;
 };
