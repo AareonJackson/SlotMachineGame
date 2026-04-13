@@ -1,4 +1,5 @@
 #include "ui/game_window.h"
+#include "core/rng.h"
 #include <iostream>
 
 GameWindow::GameWindow(int width, int height, const std::string &title)
@@ -31,15 +32,25 @@ GameWindow::GameWindow(int width, int height, const std::string &title)
 
     // Define a spin click
     m_spinButton->setOnClick([this]() {
-        std::cout << "Spin Button Clicked!" << std::endl;
-        // TODO: Later this will call Engine->spin()
+        std::cout << "Spin Button Clicked! Generating random spin..." << std::endl;
+        // Secure random number generator
+        RNG rng;
 
-        // For now, let's just visually shuffle the dummy text to prove it works!
-        std::vector<std::vector<std::string>> newSymbols = {
-            {"BELL", "BAR", "LEMON"},
-            {"CHERRY", "SEVEN", "BAR"},
-            {"LEMON", "CHERRY", "BELL"}
-        };
+        // Define the available symbols on the slot machine
+        std::vector<std::string> possibleSymbols = {"SEVEN", "CHERRY", "BAR", "LEMON", "BELL"};
+
+        // A 3x3 matrix for the new spin
+        std::vector<std::vector<std::string>> newSymbols(3, std::vector<std::string>(3));
+
+        // Randomly fill the matrix using the RNG
+        for (int reel = 0; reel < 3; ++reel) {
+            for (int row = 0; row < 3; ++row) {
+                int randomIndex = rng.getRandomInt(0, possibleSymbols.size() - 1);
+                newSymbols[reel][row] = possibleSymbols[randomIndex];
+            }
+        }
+
+        // Update the UI
         m_reelView->updateSymbols(newSymbols);
     });
 }
