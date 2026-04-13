@@ -21,7 +21,7 @@ public:
     const ReelsConfig& getReelsConfig() const { return reelsConfig; }
     const PaylinesConfig& getPaylinesConfig() const { return paylinesConfig; }
     const PaytableConfig& getPaytableConfig() const { return paytableConfig; }
-    const FeaturesConfig& getFeaturesConfig() const { return featuresConfig; }
+    // const FeaturesConfig& getFeaturesConfig() const { return featuresConfig; }
 
 
 private:
@@ -34,5 +34,5 @@ private:
     ReelsConfig reelsConfig;
     PaylinesConfig paylinesConfig;
     PaytableConfig paytableConfig;
-    FeaturesConfig featuresConfig;
+    // FeaturesConfig featuresConfig;
 };
